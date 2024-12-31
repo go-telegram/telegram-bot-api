@@ -3328,3 +3328,33 @@ type PreCheckoutQuery struct {
 	// optional
 	OrderInfo *OrderInfo `json:"order_info,omitempty"`
 }
+
+// PreparedInlineMessage describes an inline message to be sent by a user of a Mini App.
+type PreparedInlineMessage struct {
+	// Unique identifier of the prepared message
+	Id string `json:"id"`
+	// Expiration date of the prepared message, in Unix time. Expired prepared messages can no longer be used
+	ExpirationDate int64 `json:"expiration_date"`
+}
+
+// StarTransaction Describes a Telegram Star transaction.
+type StarTransaction struct {
+	// Unique identifier of the transaction. Coincides with the identifier of the original transaction for refund transactions. Coincides with SuccessfulPayment.telegram_payment_charge_id for successful incoming payments from users.
+	Id string `json:"id"`
+	// Integer amount of Telegram Stars transferred by the transaction
+	Amount int64 `json:"amount"`
+	// Optional. The number of 1/1000000000 shares of Telegram Stars transferred by the transaction; from 0 to 999999999
+	NanostarAmount int64 `json:"nanostar_amount"`
+	// Date the transaction was created in Unix time
+	Date int64 `json:"date"`
+	// Optional. Source of an incoming transaction (e.g., a user purchasing goods or services, Fragment refunding a failed withdrawal). Only for incoming transactions
+	Source interface{} `json:"source"`
+	// Optional. Receiver of an outgoing transaction (e.g., a user for a purchase refund, Fragment for a withdrawal). Only for outgoing transactions
+	Receiver interface{} `json:"receiver"`
+}
+
+// StarTransactions Contains a list of Telegram Star transactions.
+type StarTransactions struct {
+	// The list of transactions
+	Transactions []StarTransaction `json:"transactions"`
+}
